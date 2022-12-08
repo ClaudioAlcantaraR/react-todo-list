@@ -1,24 +1,25 @@
 import React from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa'
+import { BsPencilSquare, BsFillTrashFill } from "react-icons/bs";
+/* Bootstrap */
+import Button from 'react-bootstrap/Button';
 
 const List = ({ items, removeItem, editItem }) => {
   return (
-    <div className="grocery-list">
+    <div>
         {items.map((item) => {
             const {id, title} = item;
-            
             return (
-                <article key={id} className="grocery-item">
-                    <p className="title">{title}</p>
-                    <div className="btn-container">
-                        <button type="button" className="edit-btn" onClick={() => editItem(id)}>
-                            <FaEdit />
-                        </button>
-                        <button type="button" className="delete-btn" onClick={() => removeItem(id)}>
-                            <FaTrash />
-                        </button>
+                <div key={id} className="task-list">
+                    <div><span className="task-name">{title}</span></div>
+                    <div>
+                        <Button variant="outline-success" type="button" onClick={() => editItem(id)}>
+                            <BsPencilSquare />
+                        </Button>
+                        <Button className="ms-3" variant="outline-danger" type="button" onClick={() => removeItem(id)}>
+                            <BsFillTrashFill />
+                        </Button>
                     </div>
-                </article>
+                </div>
             );
         })}
     </div>

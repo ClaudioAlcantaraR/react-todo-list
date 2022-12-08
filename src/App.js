@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
+/* Bootstrap */
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 const getLocalStorage = () => {
   let list = localStorage.getItem('list');
@@ -81,28 +86,27 @@ function App() {
     localStorage.setItem('list', JSON.stringify(list))
   }, [list])
 
-  return  (
-    <section className="section-center">
-      <form className="grocery-form" onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list}/>}
-        <h3>Grocery Bud</h3>
-        <div className="form-control">
-          <input type="text" className="grocery" placeholder="eg. eggs" value={name} onChange={(e) => setName(e.target.value)} />
-          <button type="submit" className="submit-btn">
-            {isEditing ? 'edit' : 'submit'}
-          </button>
-        </div>
-      </form>
+  return (
+    <Container className="main-container">
+      <h3>Mi lista de tareas</h3>
+      <Form onSubmit={handleSubmit}>
+        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list}/>} 
+        <Col className="add-task-container">
+          <Form.Control type="text" placeholder="Añade una tarea" value={name} onChange={(e) => setName(e.target.value)} />
+          <Button type="submit" className="submit-button" variant="dark">
+            {isEditing ? 'Editar' : 'Añadir'}
+          </Button>
+        </Col>
+      </Form>
       {list.length > 0 && (
-        <div className="grocery-container">
+        <Col>
           <List items={list} removeItem={removeItem} editItem={editItem} />
-          <button className="clear-btn" onClick={clearList}>
-            Borrar todo
-          </button>
-        </div>
+          <Button onClick={clearList} className="clear-all-button" variant="outline-danger">
+            Borrar todas las tareas
+          </Button>
+        </Col>
       )}
-      
-    </section>  
+    </Container>  
   );
 }
 
