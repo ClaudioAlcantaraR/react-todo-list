@@ -17,10 +17,15 @@ const getLocalStorage = () => {
 }
 
 function App() {
+  // Value para el form
   const [name, setName] = useState('');
+  // Value para la lista y localstorage
   const [list, setList] = useState(getLocalStorage());
+  // Value para cuando es editado el campo
   const [isEditing, setIsEditing] = useState(false);
+  // Refleja cual value es editado
   const [editID, setEditID] = useState(null);
+  // Value para las alertas
   const [alert, setAlert] = useState({
     show: false,
     msg: '',
@@ -90,10 +95,13 @@ function App() {
     <Container className="main-container">
       <h3>Mi lista de tareas</h3>
       <Form onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list}/>} 
+        {/* Manejo de la alerta segun el valor del submit */}
+        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />} 
         <Col className="add-task-container">
+          
           <Form.Control type="text" placeholder="Añade una tarea" value={name} onChange={(e) => setName(e.target.value)} />
           <Button type="submit" className="submit-button" variant="dark">
+            {/* Comprobamos si el usuario esta editando o no */}
             {isEditing ? 'Editar' : 'Añadir'}
           </Button>
         </Col>
