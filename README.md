@@ -6,6 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![](todo-app-react.JPG)
 
+Live demo: https://aesthetic-manatee-10a5be.netlify.app/
+
 ## Available Scripts
 
 In the project directory, you can run:
